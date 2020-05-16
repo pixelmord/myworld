@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github';
+import { useGithubJsonForm } from 'react-tinacms-github';
 import { GetStaticProps } from 'next';
 
 export type HomeProps = {
@@ -12,7 +13,14 @@ export type HomeProps = {
   };
 };
 export default function Home({ file }: HomeProps): React.ReactElement {
-  const data = file.data;
+  const formOptions = {
+    label: 'Home Page',
+    fields: [
+      { name: 'title', component: 'text' },
+      { name: 'metaTitle', component: 'text' },
+    ],
+  };
+  const [data, form] = useGithubJsonForm(file as any, formOptions);
   return (
     <div className="container">
       <Head>
