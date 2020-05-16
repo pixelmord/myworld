@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/pixelmord/myworld/compare/v1.1.0...v1.2.0) (2020-05-16)
+
+
+### Features
+
+* **tina:** add styles for tina ([13b87a2](https://github.com/pixelmord/myworld/commit/13b87a289d732f76138fa98285d0dbd821b002a3))
+
 # [1.1.0](https://github.com/pixelmord/myworld/compare/v1.0.0...v1.1.0) (2020-05-16)
 
 
