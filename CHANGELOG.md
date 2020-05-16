@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/pixelmord/myworld/compare/v1.2.0...v1.3.0) (2020-05-16)
+
+
+### Features
+
+* **release:** update package.json during ci ([54c55d6](https://github.com/pixelmord/myworld/commit/54c55d6ddeeaa4dfcb3dc5aa8e65739427005f61))
+
 # [1.2.0](https://github.com/pixelmord/myworld/compare/v1.1.0...v1.2.0) (2020-05-16)
 
 
