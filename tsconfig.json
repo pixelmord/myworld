@@ -15,5 +15,5 @@
     "jsx": "preserve"
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "prettier.config.js", "commitlint.config.js", ".eslintrc.js", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "*.config.js", ".eslintrc.js", "**/*.ts", "**/*.tsx"]
 }
