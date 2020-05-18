@@ -23,16 +23,10 @@
       [
         "@semantic-release/npm",
         {
-          "npmPublish": false,
-          "tarballDir": "dist"
+          "npmPublish": false
         }
       ],
-      [
-        "@semantic-release/github",
-        {
-          "assets": "dist/*.tgz"
-        }
-      ],
+      "@semantic-release/github",
       [
         "@semantic-release/git",
         {
