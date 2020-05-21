@@ -28,12 +28,12 @@ export default function RecipePage({
     label: 'Recipe',
     fields: [
       {
-        name: 'title',
+        name: 'frontmatter.title',
         label: 'Recipe Title',
         component: 'text',
       },
       {
-        name: 'rawMarkdownBody',
+        name: 'markdownBody',
         label: 'Content',
         component: 'markdown',
       },
