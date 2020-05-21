@@ -1,6 +1,6 @@
 ---
-title: 'Quarkkuchen Elfriede'
-excerpt: 'Mein Lieblingskuchen'
+title: Quarkkuchen Elfriede
+excerpt: Mein Lieblingskuchen
 ingredients:
   - 750g Quark 20%
   - 320g Puderzucker
@@ -15,13 +15,11 @@ tags:
   - Backen
 preparationTime: 60
 difficulty: simpel
-coverImage: '/assets/recipes/tina-guina-s8_7AqkzCWY-unsplash.jpg'
+coverImage: /assets/recipes/tina-guina-s8_7AqkzCWY-unsplash.jpg
 date: '2020-05-20T12:35:07.322Z'
-ogImage: '/assets/recipes/tina-guina-s8_7AqkzCWY-unsplash.jpg'
+ogImage: /assets/recipes/tina-guina-s8_7AqkzCWY-unsplash.jpg
 ---
-
-Eier mit Zucker schaumig rühren.
-Quark darunter rühren.
-Rest auch darunter mischen.
-Backform fetten und mit Mehl oder Gries bestäuben.
-Im gut vorgeheizten Ofen bei 180-200° mindestens 1 Stunde auf der untersten Schiene backen, bzw. so lange bis die Oberfläche dunkelbraun ist.
+1. Eier mit Zucker schaumig rühren.
+2. Quark darunter rühren. Rest auch darunter mischen.
+3. Backform fetten und mit Mehl oder Gries bestäuben. 
+4. Im gut vorgeheizten Ofen bei 180-200° mindestens 1 Stunde auf der untersten Schiene backen, bzw. so lange bis die Oberfläche dunkelbraun ist.
