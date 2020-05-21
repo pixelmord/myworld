@@ -14,6 +14,7 @@ import { RecipeFrontmatter } from '../../lib/contentTypes';
 import { MarkdownPageProps } from '../../lib/propTypes';
 import OpenAuthoringInlineForm from '../../components/OpenAuthoringInlineForm';
 import { GithubPreviewProps } from 'next-tinacms-github';
+import MarkdownContent from '../../components/MarkdownContent';
 
 export default function RecipePage({
   file,
@@ -61,6 +62,9 @@ export default function RecipePage({
             </Head>
 
             <InlineTextareaField name="frontmatter.title" />
+            <InlineWysiwyg name="markdownBody">
+              <MarkdownContent escapeHtml={false} content={markdownBody} />
+            </InlineWysiwyg>
           </>
         )}
       </Layout>
