@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/pixelmord/myworld/compare/v1.3.0...v1.4.0) (2020-05-21)
+
+
+### Features
+
+* poc for inline editing of recipes ([e5376b4](https://github.com/pixelmord/myworld/commit/e5376b425d03baa6989175bcbe56d7a5c6b168c4))
+
 # [1.3.0](https://github.com/pixelmord/myworld/compare/v1.2.0...v1.3.0) (2020-05-16)
 
 
