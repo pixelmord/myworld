@@ -3,8 +3,10 @@ import * as React from 'react';
 
 import App from 'next/app';
 import { TinaCMS, TinaProvider } from 'tinacms';
+import { ThemeProvider } from 'theme-ui';
 import { useGithubEditing, GithubClient, TinacmsGithubProvider } from 'react-tinacms-github';
 
+import { myWorldTheme } from '../styles';
 export default class Site extends App {
   cms: TinaCMS;
 
@@ -51,8 +53,10 @@ export default class Site extends App {
           exitEditMode={exitEditMode}
           error={pageProps.error}
         >
-          <EditLink editMode={pageProps.preview} />
-          <Component {...pageProps} />
+          <ThemeProvider theme={myWorldTheme}>
+            <EditLink editMode={pageProps.preview} />
+            <Component {...pageProps} />
+          </ThemeProvider>
         </TinacmsGithubProvider>
       </TinaProvider>
     );

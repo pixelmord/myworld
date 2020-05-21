@@ -40,13 +40,17 @@
     ]
   },
   "dependencies": {
+    "@theme-ui/preset-tailwind": "^0.3.0",
     "dotenv": "^8.2.0",
+    "fast-glob": "^3.2.2",
     "next": "9.4.0",
     "next-tinacms-github": "^0.1.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-tinacms-github": "^0.3.1",
+    "react-tinacms-inline": "^0.4.9",
     "styled-components": "^5.1.0",
+    "theme-ui": "^0.3.1",
     "tinacms": "^0.19.3"
   },
   "devDependencies": {
