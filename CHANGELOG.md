@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/pixelmord/myworld/compare/v1.4.0...v1.5.0) (2020-05-21)
+
+
+### Bug Fixes
+
+* **tina:**  corrct names for form fields ([50103fd](https://github.com/pixelmord/myworld/commit/50103fdf9b5423b52bc2a6586a169ae872dea8ba))
+
+
+### Features
+
+* add markdown rendering ([082dacb](https://github.com/pixelmord/myworld/commit/082dacba38f3e02f8f4890a6ad77acb2141431c8))
+
 # [1.4.0](https://github.com/pixelmord/myworld/compare/v1.3.0...v1.4.0) (2020-05-21)
 
 
