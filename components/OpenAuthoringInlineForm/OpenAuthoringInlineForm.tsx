@@ -7,15 +7,11 @@ interface Props extends React.PropsWithChildren<InlineFormProps> {
   path: string;
 }
 
-export const OpenAuthoringInlineForm: React.FC<Props> = ({ form, preview, children }: Props) => {
+export const OpenAuthoringInlineForm: React.FC<Props> = ({ form, children }: Props) => {
   // Toolbar Plugins
   useGithubToolbarPlugins();
 
-  return (
-    <InlineForm form={form} initialStatus={typeof document !== 'undefined' && preview ? 'active' : 'inactive'}>
-      {children}
-    </InlineForm>
-  );
+  return <InlineForm form={form}>{children}</InlineForm>;
 };
 
 export default OpenAuthoringInlineForm;

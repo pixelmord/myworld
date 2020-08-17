@@ -2,7 +2,8 @@ import * as React from 'react';
 import { GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import { InlineWysiwyg, InlineTextareaField } from 'react-tinacms-inline';
+import { InlineWysiwyg } from 'react-tinacms-editor';
+import { InlineTextarea } from 'react-tinacms-inline';
 import Head from 'next/head';
 import fg from 'fast-glob';
 import { useGithubMarkdownForm } from 'react-tinacms-github';
@@ -61,8 +62,8 @@ export default function RecipePage({
               <meta property="og:image" content={frontmatter.ogImage} />
             </Head>
 
-            <InlineTextareaField name="frontmatter.title" />
-            <InlineWysiwyg name="markdownBody">
+            <InlineTextarea name="frontmatter.title" />
+            <InlineWysiwyg name="markdownBody" format="markdown">
               <MarkdownContent escapeHtml={false} content={markdownBody} />
             </InlineWysiwyg>
           </>

@@ -4,7 +4,7 @@ import * as React from 'react';
 import App from 'next/app';
 import { TinaCMS, TinaProvider } from 'tinacms';
 import { ThemeProvider } from 'theme-ui';
-import { useGithubEditing, GithubClient, TinacmsGithubProvider } from 'react-tinacms-github';
+import { GithubClient, TinacmsGithubProvider } from 'react-tinacms-github';
 
 import { myWorldTheme } from '../styles';
 export default class Site extends App {
@@ -16,6 +16,7 @@ export default class Site extends App {
      * 1. Create the TinaCMS instance
      */
     this.cms = new TinaCMS({
+      enabled: !!props.pageProps.preview,
       apis: {
         /**
          * 2. Register the GithubClient
@@ -31,12 +32,8 @@ export default class Site extends App {
        * 3. Hide the Sidebar & Toolbar
        *    unless we're in Preview/Edit Mode
        */
-      sidebar: {
-        hidden: !props.pageProps.preview,
-      },
-      toolbar: {
-        hidden: !props.pageProps.preview,
-      },
+      sidebar: props.pageProps.preview,
+      toolbar: props.pageProps.preview,
     });
   }
 
@@ -47,14 +44,9 @@ export default class Site extends App {
        * 4. Wrap the page Component with the Tina and Github providers
        */
       <TinaProvider cms={this.cms}>
-        <TinacmsGithubProvider
-          editMode={pageProps.preview}
-          enterEditMode={enterEditMode}
-          exitEditMode={exitEditMode}
-          error={pageProps.error}
-        >
+        <TinacmsGithubProvider onLogin={onLogin} onLogout={onLogout} error={pageProps.error}>
           <ThemeProvider theme={myWorldTheme}>
-            <EditLink editMode={pageProps.preview} />
+            <EditLink cms={this.cms} />
             <Component {...pageProps} />
           </ThemeProvider>
         </TinacmsGithubProvider>
@@ -63,28 +55,31 @@ export default class Site extends App {
   }
 }
 
-const enterEditMode = (): Promise<void> => {
-  return fetch(`/api/preview`).then(() => {
-    window.location.href = window.location.pathname;
-  });
+const onLogin = async () => {
+  const token = localStorage.getItem('tinacms-github-token') || null;
+  const headers = new Headers();
+
+  if (token) {
+    headers.append('Authorization', 'Bearer ' + token);
+  }
+
+  const resp = await fetch(`/api/preview`, { headers: headers });
+  const data = await resp.json();
+
+  if (resp.status == 200) window.location.href = window.location.pathname;
+  else throw new Error(data.message);
 };
 
-const exitEditMode = (): Promise<void> => {
+const onLogout = () => {
   return fetch(`/api/reset-preview`).then(() => {
     window.location.reload();
   });
 };
 
 export interface EditLinkProps {
-  editMode: boolean;
+  cms: TinaCMS;
 }
 
-export const EditLink = ({ editMode }: EditLinkProps): React.ReactElement => {
-  const github = useGithubEditing();
-
-  return (
-    <button onClick={editMode ? github.exitEditMode : github.enterEditMode}>
-      {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
-    </button>
-  );
+export const EditLink = ({ cms }: EditLinkProps) => {
+  return <button onClick={() => cms.toggle()}>{cms.enabled ? 'Exit Edit Mode' : 'Edit This Site'}</button>;
 };

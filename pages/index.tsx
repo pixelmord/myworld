@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
+import { usePlugin } from 'tinacms';
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github';
 import { useGithubJsonForm, useGithubToolbarPlugins } from 'react-tinacms-github';
 import { GetStaticProps } from 'next';
@@ -21,6 +22,7 @@ export default function Home({ file }: HomeProps): React.ReactElement {
     ],
   };
   const [data, form] = useGithubJsonForm(file as any, formOptions);
+  usePlugin(form);
   useGithubToolbarPlugins();
   return (
     <div className="container">
