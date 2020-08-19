@@ -1,20 +1,22 @@
 import * as React from 'react';
-import { GetStaticPaths } from 'next';
+import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
+import { Form } from 'tinacms';
 import { InlineWysiwyg } from 'react-tinacms-editor';
 import { InlineTextarea } from 'react-tinacms-inline';
 import Head from 'next/head';
 import fg from 'fast-glob';
 import { useGithubMarkdownForm } from 'react-tinacms-github';
+import { GithubPreviewProps } from 'next-tinacms-github';
+import { GitFile } from 'react-tinacms-github/dist/form/useGitFileSha';
 
 import { getMarkdownProps } from '../../lib/api';
 import { CMS_NAME } from '../../lib/constants';
 import Layout from '../../components/Layout';
 import { RecipeFrontmatter } from '../../lib/contentTypes';
-import { MarkdownPageProps } from '../../lib/propTypes';
+import { MarkdownPageProps, MarkdownFileData } from '../../lib/propTypes';
 import OpenAuthoringInlineForm from '../../components/OpenAuthoringInlineForm';
-import { GithubPreviewProps } from 'next-tinacms-github';
 import MarkdownContent from '../../components/MarkdownContent';
 
 export default function RecipePage({
@@ -43,7 +45,10 @@ export default function RecipePage({
   };
 
   // Registers Tina Form
-  const [data, form] = useGithubMarkdownForm(file as any, formConfig);
+  const [data, form] = useGithubMarkdownForm(file as GitFile<RecipeFrontmatter>, formConfig) as [
+    MarkdownFileData<RecipeFrontmatter>,
+    Form
+  ];
 
   const frontmatter = data.frontmatter;
   const markdownBody = data.markdownBody;
@@ -77,7 +82,7 @@ export async function getStaticProps({
   preview,
   previewData,
   params,
-}): Promise<
+}: GetStaticPropsContext<{ slug: string }>): Promise<
   | {
       props: MarkdownPageProps<RecipeFrontmatter>;
     }

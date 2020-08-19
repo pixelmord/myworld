@@ -1,19 +1,15 @@
-import * as React from 'react';
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
 import Head from 'next/head';
-import { usePlugin } from 'tinacms';
+import { usePlugin, Plugin } from 'tinacms';
 import { getGithubPreviewProps, parseJson } from 'next-tinacms-github';
 import { useGithubJsonForm, useGithubToolbarPlugins } from 'react-tinacms-github';
 import { GetStaticProps } from 'next';
 
-export type HomeProps = {
-  file: {
-    data: {
-      title: string;
-      metaTitle: string;
-    };
-  };
-};
-export default function Home({ file }: HomeProps): React.ReactElement {
+import { LandingPageSection, LandingPageSectionContent } from '~components/prestyled';
+import { NextPageWithDataProps, PageData } from 'lib/contentTypes';
+
+export default function Home({ file }: NextPageWithDataProps): React.ReactElement {
   const formOptions = {
     label: 'Home Page',
     fields: [
@@ -21,7 +17,7 @@ export default function Home({ file }: HomeProps): React.ReactElement {
       { name: 'metaTitle', component: 'text' },
     ],
   };
-  const [data, form] = useGithubJsonForm(file as any, formOptions);
+  const [data, form] = useGithubJsonForm(file, formOptions) as [PageData, Plugin];
   usePlugin(form);
   useGithubToolbarPlugins();
   return (
@@ -32,7 +28,11 @@ export default function Home({ file }: HomeProps): React.ReactElement {
       </Head>
 
       <main>
-        <h1 className="title">{data.title}</h1>
+        <LandingPageSection>
+          <LandingPageSectionContent>
+            <h1 className="title">{data.title}</h1>
+          </LandingPageSectionContent>
+        </LandingPageSection>
       </main>
     </div>
   );

@@ -43,14 +43,14 @@ export default class Site extends App {
       /**
        * 4. Wrap the page Component with the Tina and Github providers
        */
-      <TinaProvider cms={this.cms}>
-        <TinacmsGithubProvider onLogin={onLogin} onLogout={onLogout} error={pageProps.error}>
-          <ThemeProvider theme={myWorldTheme}>
+      <ThemeProvider theme={myWorldTheme}>
+        <TinaProvider cms={this.cms}>
+          <TinacmsGithubProvider onLogin={onLogin} onLogout={onLogout} error={pageProps.error}>
             <EditLink cms={this.cms} />
             <Component {...pageProps} />
-          </ThemeProvider>
-        </TinacmsGithubProvider>
-      </TinaProvider>
+          </TinacmsGithubProvider>
+        </TinaProvider>
+      </ThemeProvider>
     );
   }
 }

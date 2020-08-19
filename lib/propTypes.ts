@@ -4,12 +4,13 @@ export type MarkdownPageProps<T = MarkdownFrontmatter> = {
   error?: string;
 };
 
+export type MarkdownFileData<T = MarkdownFrontmatter> = {
+  frontmatter: T;
+  markdownBody: string;
+};
 export type MarkdownFileProps<T = MarkdownFrontmatter> = {
   fileRelativePath: string;
-  data: {
-    frontmatter: T;
-    markdownBody: string;
-  };
+  data: MarkdownFileData<T>;
 };
 
 export type MarkdownFrontmatter = { [key: string]: any };
