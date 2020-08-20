@@ -7,7 +7,7 @@ export const Heading: React.FC<HeadingProps> = ({
   as = 'h2',
   ...rest
 }: PropsWithoutRef<PropsWithChildren<HeadingProps>>) => {
-  let computedVariant;
+  let computedVariant: string;
 
   switch (variant) {
     case 'h1':
