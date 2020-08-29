@@ -5,7 +5,10 @@ import path from 'path';
 import { getGithubPreviewProps, parseMarkdown, GithubPreviewProps } from 'next-tinacms-github';
 import { MarkdownPageProps, MarkdownFileProps, MarkdownFrontmatter } from './propTypes';
 
-export function fetchMarkdownDoc<T extends MarkdownFrontmatter>(subdir = 'recipes', fileName): MarkdownFileProps<T> {
+export function fetchMarkdownDoc<T extends MarkdownFrontmatter>(
+  subdir = 'recipes',
+  fileName: string
+): MarkdownFileProps<T> {
   const fileRelativePath = `content/${subdir}/${fileName}`;
   const fullPath = path.resolve(fileRelativePath);
 
@@ -21,15 +24,17 @@ export function fetchMarkdownDoc<T extends MarkdownFrontmatter>(subdir = 'recipe
 }
 
 export async function fetchAllMarkdownDocs<T>(subdir = 'recipes'): Promise<MarkdownFileProps<T>[]> {
-  const directory = path.resolve(`./content/${subdir}`);
-  const files = await fg(directory + '/**/*.md');
+  const files = await fg(`./content/${subdir}/**/*.md`);
 
-  return files.map((fileName) => fetchMarkdownDoc<T>(subdir, fileName));
+  return files.map((fileName: string) => {
+    const parts = fileName.split('/');
+    return fetchMarkdownDoc<T>(subdir, parts[parts.length - 1]);
+  });
 }
 
 export const getMarkdownProps = async <T extends MarkdownFrontmatter>(
   subdir = 'recipes',
-  fileName,
+  fileName: string,
   preview: boolean,
   previewData: any
 ): Promise<{ props: MarkdownPageProps<T> } | GithubPreviewProps<T>> => {

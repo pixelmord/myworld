@@ -1,10 +1,11 @@
-import * as React from 'react';
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import { Form } from 'tinacms';
+import { Form, usePlugin } from 'tinacms';
 import { InlineWysiwyg } from 'react-tinacms-editor';
-import { InlineTextarea } from 'react-tinacms-inline';
+import { InlineText } from 'react-tinacms-inline';
 import Head from 'next/head';
 import fg from 'fast-glob';
 import { useGithubMarkdownForm } from 'react-tinacms-github';
@@ -13,12 +14,13 @@ import { GitFile } from 'react-tinacms-github/dist/form/useGitFileSha';
 
 import { getMarkdownProps } from '../../lib/api';
 import { CMS_NAME } from '../../lib/constants';
-import Layout from '../../components/Layout';
 import { RecipeFrontmatter } from '../../lib/contentTypes';
 import { MarkdownPageProps, MarkdownFileData } from '../../lib/propTypes';
-import OpenAuthoringInlineForm from '../../components/OpenAuthoringInlineForm';
-import MarkdownContent from '../../components/MarkdownContent';
-
+import Layout from '~components/Layout';
+import OpenAuthoringInlineForm from '~components/OpenAuthoringInlineForm';
+import MarkdownContent from '~components/MarkdownContent';
+import { LandingPageSection, LandingPageSectionContent, Heading } from '~components/prestyled';
+import { slugFromFilepath } from 'lib/slugHelpers';
 export default function RecipePage({
   file,
   preview,
@@ -49,6 +51,7 @@ export default function RecipePage({
     MarkdownFileData<RecipeFrontmatter>,
     Form
   ];
+  usePlugin(form);
 
   const frontmatter = data.frontmatter;
   const markdownBody = data.markdownBody;
@@ -66,11 +69,16 @@ export default function RecipePage({
               </title>
               <meta property="og:image" content={frontmatter.ogImage} />
             </Head>
-
-            <InlineTextarea name="frontmatter.title" />
-            <InlineWysiwyg name="markdownBody" format="markdown">
-              <MarkdownContent escapeHtml={false} content={markdownBody} />
-            </InlineWysiwyg>
+            <LandingPageSection>
+              <LandingPageSectionContent>
+                <Heading as="h1">
+                  <InlineText name="frontmatter.title" />
+                </Heading>
+                <InlineWysiwyg name="markdownBody" format="markdown">
+                  <MarkdownContent escapeHtml={false} content={markdownBody} />
+                </InlineWysiwyg>
+              </LandingPageSectionContent>
+            </LandingPageSection>
           </>
         )}
       </Layout>
@@ -96,13 +104,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const recipes = await fg(`./content/recipes/**/*.md`);
   return {
     paths: recipes.map((recipe) => {
-      const parts = recipe.split('/');
       return {
         params: {
-          slug: parts[parts.length - 1].split('.').slice(0, -1).join('.'),
+          slug: `recipes/${slugFromFilepath(recipe)}`,
         },
       };
     }),
-    fallback: false,
+    fallback: true,
   };
 };

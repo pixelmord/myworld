@@ -1,0 +1,5 @@
+### NextNavLink
+
+```js
+<NextNavLink />
+```
