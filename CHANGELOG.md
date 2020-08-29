@@ -1,3 +1,13 @@
+# [1.6.0](https://github.com/pixelmord/myworld/compare/v1.5.0...v1.6.0) (2020-08-29)
+
+
+### Features
+
+* **content-spices:** add spice recipes ([93c3cec](https://github.com/pixelmord/myworld/commit/93c3cecd22c69e4092956c3a72b3b2e2675a1e82))
+* add more styled components for markdown ([23bcafa](https://github.com/pixelmord/myworld/commit/23bcafa67e12f59b62ad66da9ca8f7e8f85982b7))
+* add prestyled components ([a1af1e4](https://github.com/pixelmord/myworld/commit/a1af1e44b36bc1a1060cc353eb9b8aea954b1770))
+* improve api and recipes, links ([4f92f46](https://github.com/pixelmord/myworld/commit/4f92f46f82c34dc9d0a33033ce8a3043538d742d))
+
 # [1.5.0](https://github.com/pixelmord/myworld/compare/v1.4.0...v1.5.0) (2020-05-21)
 
 
