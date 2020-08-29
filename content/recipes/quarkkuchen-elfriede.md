@@ -1,5 +1,5 @@
 ---
-title: Quarkkuchen Elfriede
+title: "Quarkkuchen Elfriede \U0001F370"
 excerpt: Mein Lieblingskuchen
 ingredients:
   - 750g Quark 20%
